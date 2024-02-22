@@ -19,21 +19,25 @@ export const Card = ({ id, name, image, price }: Props) => {
       quantity: 1, // Adjust the desired quantity
     };
     dispatch(addProduct(productToAdd));
-    toast.success("Item added to cart🎊")
+    toast.success("Item added to cart🎊");
   };
   return (
     <div className="bg-[#faf5ef] my-3 w-full rounded-lg shadow-lg h-fit">
       <div className="w-full h-[70%] rounded-md p-1 object-cover">
-        <img
-          className="w-full   h-full object-cover rounded-lg"
-          src={image}
-          alt="cap"
-        />
+        <Link to={"/product/" + id}>
+          <img
+            className="w-full   h-full object-cover rounded-lg"
+            src={image}
+            alt="cap"
+          />
+        </Link>
       </div>
       <div>
         <div className="p-2">
           <Link to={"/product/" + id}>
-            <p className="text-gray-600 cursor-pointer">{name}</p>
+            <p className="text-gray-600 cursor-pointer hover:font-bold">
+              {name}
+            </p>
           </Link>
           <p className="font-bold">Rs.{price}.00</p>
         </div>

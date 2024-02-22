@@ -4,8 +4,15 @@ import { data } from "../data";
 import { Card } from "./Card";
 
 const Product = () => {
-  const { id } = useParams();
-  const product = data.filter((product) => product.id === parseInt(id));
+  const { id } = useParams<{ id?: string }>();
+  const parsedId = id ? parseInt(id, 10) : undefined;
+
+  // Handle the case where parsedId is undefined
+  if (parsedId === undefined) {
+    return <div>No product found</div>;
+  }
+
+  const product = data.filter((product) => product.id === parsedId);
 
   return (
     <div>

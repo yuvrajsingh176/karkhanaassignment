@@ -28,25 +28,29 @@ export const CartCard = ({ id, name, image, price }: Props) => {
   };
   const removeFromCard = () => {
     dispatch(removeProduct(product[0]));
-    };
-    const removeFromCart = (id:number) => {
-        dispatch(deleteFromCard(id))
-    }
+  };
+  const removeFromCart = (id: number) => {
+    dispatch(deleteFromCard(id));
+  };
   return (
     product[0].quantity > 0 && (
       <div className="flex  justify-center">
         <div className="bg-[#faf5ef] my-3 w-4/5   rounded-lg shadow-lg h-fit flex-col ">
           <div className="w-full h-[50%] rounded-md p-1 object-cover">
-            <img
-              className="w-full   h-1/4 flex justify-center items-center object-cover rounded-lg"
-              src={image}
-              alt="cap"
-            />
+            <Link to={"/product/" + id}>
+              <img
+                className="w-full   h-1/4 flex justify-center items-center object-cover rounded-lg"
+                src={image}
+                alt="cap"
+              />
+            </Link>
           </div>
           <div>
             <div className="p-2">
               <Link to={"/product/" + id}>
-                <p className="text-gray-600 cursor-pointer">{name}</p>
+                <p className="text-gray-600 cursor-pointer hover:font-bold">
+                  {name}
+                </p>
               </Link>
               <p className="font-bold">Rs.{price}.00</p>
             </div>
@@ -66,8 +70,8 @@ export const CartCard = ({ id, name, image, price }: Props) => {
               <p className="flex items-center font-bold   ">
                 QTY: {product[0].quantity}
               </p>
-                          <button
-                              onClick={()=>removeFromCart(product[0].id)}
+              <button
+                onClick={() => removeFromCart(product[0].id)}
                 className={`flex items-center justify-center shadow-lg hover:drop-shadow-2xl hover:shadow-2xl   bg-black py-2 px-2  mx-2 mb-2  text-white rounded-xl w-1/4 text-xl`}
               >
                 Remove
